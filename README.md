@@ -16,14 +16,14 @@
 ### Association
 
 * has_many :products
-- has_one :purchase
+- has_many :purchase
 
 ## destination テーブル
 
 | Column                              | Type       | Options                        |
 |-------------------------------------|------------|--------------------------------|
 | post_code                           | string     | null: false                    |
-| prefecture_id                       | string     | null: false,foreign_key: true  |
+| prefecture_id                       | integer    | null: false                    |
 | city                                | string     | null: false                    |
 | address                             | string     | null: false                    |
 | building_name                       | string     |                                |
@@ -31,23 +31,17 @@
 
 ### Association
 
-- belongs_to :user
+- belongs_to :product
 
 ## productテーブル
 
 | Column        | Type       | Options                        |
 |-------------  |------------|--------------------------------|
-| name          | string     | null: false                    |
-| price         | integer    | null: false                    |
-| description   | text       | null: false                    |
 | status        | string     | null: false                    |
 | shipping_cost | string     | null: false                    |
 | shipping_days | string     | null: false                    |
-| prefecture_id | string     | null: false                    |
 | area          | string     | null: false                    |
 | category      | string     | null: false                    |
-| shipping_id   | integer    | null: false, foreign_key: true |
-| user_id       | integer    | null: false, foreign_key: true |
 
 ### Association
 
