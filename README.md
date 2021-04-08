@@ -21,7 +21,7 @@
 - belongs_to :destination dependent: :destroy
 - belongs_to :card dependent: :destroy
 
-## destination テーブル
+## item テーブル
 
 | Column                              | Type       | Options                        |
 |-------------------------------------|------------|--------------------------------|
@@ -110,4 +110,3 @@
 ### Association
 
 * has_many :products
-
