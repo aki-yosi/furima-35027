@@ -28,8 +28,7 @@
 | address                             | string     | null: false                    |
 | building_name                       | string     |                                |
 | phone_number                        | string     | null: false                    |
-| user_id                             | integer    | null: false, foreign_key: true |
-| product_id                          | integer    | null: false, foreign_key: true |
+| purchases_id              　　　　　　| integer    | null: false, foreign_key: true |
 
 ### Association
 
@@ -37,30 +36,30 @@
 
 ## productsテーブル
 
-| Column        | Type       | Options                        |
-|-------------  |------------|--------------------------------|
-| status        | string     | null: false                    |
-| shipping_cost | string     | null: false                    |
-| shipping_days | string     | null: false                    |
-| area          | string     | null: false                    |
-| category      | string     | null: false                    |
-| price         | integer    | null: false                    |
-| explanation   | text       | null: false                    |
-| name          | string     | null: false                    |
+| Column           | Type       | Options                        |
+|------------------|------------|--------------------------------|
+| status_id        | integer    | null: false                    |
+| shipping_cost_id | integer    | null: false                    |
+| shipping_days_id | integer    | null: false                    |
+| area_id          | integer    | null: false                    |
+| category_id      | integer    | null: false                    |
+| price            | integer    | null: false                    |
+| explanation      | text       | null: false                    |
+| name             | string     | null: false                    |
 
 
 ### Association
 
 - belongs_to :user
 - belongs_to_active_hash :prefecture
-- has_one :purchases
+- has_one :purchase
 
 ## purchases
 
 | Column          | Type      | Options                        |
 | ----------------|-----------|--------------------------------|
 | user_id         | integer   | null: false, foreign_key: true |
-| destination_id  | integer   | null: false, foreign_key: true |
+| product_id      | integer   | null: false, foreign_key: true |
 
 ### Association
 
