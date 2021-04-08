@@ -16,9 +16,9 @@
 ### Association
 
 * has_many :products
-- has_many :purchase
+- has_many :purchases
 
-## destination テーブル
+## destinations テーブル
 
 | Column                              | Type       | Options                        |
 |-------------------------------------|------------|--------------------------------|
@@ -28,12 +28,14 @@
 | address                             | string     | null: false                    |
 | building_name                       | string     |                                |
 | phone_number                        | string     | null: false                    |
+| user_id                             | integer    | null: false, foreign_key: true |
+| product_id                          | integer    | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :product
+- belongs_to :purchases
 
-## productテーブル
+## productsテーブル
 
 | Column        | Type       | Options                        |
 |-------------  |------------|--------------------------------|
@@ -42,21 +44,26 @@
 | shipping_days | string     | null: false                    |
 | area          | string     | null: false                    |
 | category      | string     | null: false                    |
+| price         | integer    | null: false                    |
+| explanation   | text       | null: false                    |
+| name          | string     | null: false                    |
+
 
 ### Association
 
 - belongs_to :user
 - belongs_to_active_hash :prefecture
-- has_one :purchase
+- has_one :purchases
 
-## purchase
+## purchases
 
-| Column   | Type      | Options                        |
-| ---------|-----------|--------------------------------|
-| user_id  | integer   | null: false, foreign_key: true |
-| item_id  | integer   | null: false, foreign_key: true |
+| Column          | Type      | Options                        |
+| ----------------|-----------|--------------------------------|
+| user_id         | integer   | null: false, foreign_key: true |
+| destination_id  | integer   | null: false, foreign_key: true |
 
 ### Association
 
-- has_one :user
-- has_one :product
+- belongs_to :user
+- belongs_to :product
+- belongs_to :destinations
