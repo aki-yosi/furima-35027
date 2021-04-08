@@ -2,25 +2,24 @@
 
 ## users テーブル
 
-| Column             | Type                | Options                 |
-|--------------------|---------------------|-------------------------|
-| nickname           | string              | null: false             |
-| encrypted_password | string              | null: false             |
-| email              | string              | null: false             |
-| user_image         | string              |                         |
-| family_name        | string              | null: false             |
-| first_name         | string              | null: false             |
-| family_name_kana   | string              | null: false             |
-| first_name_kana    | string              | null: false             |
-| birth_day          | date                | null: false             |
+| Column             | Type                | Options                  |
+|--------------------|---------------------|------------------------- |
+| nickname           | string              | null: false              |
+| encrypted_password | string              | null: false              |
+| email              | string              | null: false, unique: true|
+| family_name        | string              | null: false              |
+| first_name         | string              | null: false              |
+| family_name_kana   | string              | null: false              |
+| first_name_kana    | string              | null: false              |
+| birth_day          | date                | null: false              |
 
 ### Association
 
 * has_many :products
-- belongs_to :item
-- belongs_to :card
+- belongs_to :destination
+- has_one :purchase
 
-## item テーブル
+## destination テーブル
 
 | Column                              | Type       | Options                        |
 |-------------------------------------|------------|--------------------------------|
@@ -36,19 +35,6 @@
 
 - belongs_to :user
 
-## cadeテーブル
-
-| Column      | Type       | Options                        |
-|-------------|------------|--------------------------------|
-| user_id     | integer    | null: false, foreign_key: true |
-| customer_id | string     | null: false                    |
-| cade_id     | string     | null: false                    |
-
-### Association
-
-- belongs_to :user
-
-
 ## productテーブル
 
 | Column        | Type       | Options                        |
@@ -57,11 +43,10 @@
 | price         | string     | null: false                    |
 | description   | text       | null: false                    |
 | status        | string     | null: false                    |
-| size          | string     | null: false                    |
 | shipping_cost | string     | null: false                    |
 | shipping_days | string     | null: false                    |
 | prefecture_id | string     | null: false                    |
-| judgment      | string     |                                |
+| area          | string     | null: false                    |
 | category_id   | integer    | null: false, foreign_key: true |
 | brand_id      | integer    | null: false, foreign_key: true |
 | shipping_id   | integer    | null: false, foreign_key: true |
@@ -70,17 +55,17 @@
 ### Association
 
 - belongs_to :user
-- belongs_to :category
-- belongs_to :brand
-* has_many :images
 - belongs_to_active_hash :prefecture
+- has_one :purchase
 
-## brandテーブル
+## purchase
 
-| Column      | Type       | Options             |
-|-------------|------------|---------------------|
-| name        | string     | index: true         |
+| Column   | Type      | Options                        |
+| ---------|-----------|--------------------------------|
+| user_id  | integer   | null: false, foreign_key: true |
+| item_id  | integer   | null: false, foreign_key: true |
 
 ### Association
 
-* has_many :products
+- has_one :user
+- has_one :product
