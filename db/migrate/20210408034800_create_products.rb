@@ -1,12 +1,15 @@
-      t.string :shipping_cost
-      t.string :shipping_days
-      t.string :prefecrture_id, null: false
-      t.string :judment
-      t.integer :category_id, null: false, foreign_key: true
-      t.integer :brand_id, null: false, foreign_key: true
-      t.integer :shipping_id, null: false, foreign_key: true
-      t.integer :user_id, null: false, foreign_key: true
+class CreateProducts < ActiveRecord::Migration[6.0]
+  def change
+    create_table :products do |t|
+      t.string :name
+      t.integer :price
+      t.integer :shipping_cost_id
+      t.integer :shipping_day_id
+      t.integer :category_id
+      t.integer :status_id
+      t.integer :area_id
+      t.text :explanation
       t.timestamps
     end
   end
-end
+  
