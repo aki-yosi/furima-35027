@@ -28,11 +28,11 @@
 | address                             | string     | null: false                    |
 | building_name                       | string     |                                |
 | phone_number                        | string     | null: false                    |
-| purchases_id              　　　　　　| integer    | null: false, foreign_key: true |
+| purchases_id                        | integer    | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :purchases
+- belongs_to :purchase
 
 ## productsテーブル
 
@@ -65,4 +65,4 @@
 
 - belongs_to :user
 - belongs_to :product
-- belongs_to :destinations
+- belongs_to :destination
