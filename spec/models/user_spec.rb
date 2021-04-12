@@ -67,8 +67,8 @@ RSpec.describe User, type: :model do
       end
 
       it 'passwordが全角であれば登録できないこと' do
-        @user.password = 'AAAAAA'
-        @user.password_confirmation = 'AAAAAA'
+        @user.password = 'ＡＡＡＡＡＡ'
+        @user.password_confirmation = 'ＡＡＡＡＡＡ'
         @user.valid?
         expect(@user.errors.full_messages).to include('Password 英数文字を使用してください')
       end
