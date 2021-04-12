@@ -7,8 +7,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
       t.string :nickname
-      t.string :user_image
-      t.text :introduotion
       t.string :family_name
       t.string :first_name
       t.string :family_name_kana
@@ -50,3 +48,5 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
     # add_index :users, :unlock_token,         unique: true
   end
 end
+
+
