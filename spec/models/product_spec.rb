@@ -109,6 +109,11 @@ RSpec.describe Product, type: :model do
         @product.valid?
         expect(@product.errors.full_messages).to include("Area must be other than 1")
       end
+      it 'userが紐付いていない場合は登録できない' do
+        @message.user = nil
+        @message.valid?
+        expect(@message.errors.full_messages).to include('User must exist')
+      end
     end
   end
 end
