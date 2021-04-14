@@ -8,8 +8,8 @@ class User < ApplicationRecord
     validates :birth_day
  end
 
- #has_many :products
- #has_many :purchases
+ has_many :products
+ has_many :purchases
 
 
   validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: '英数文字を使用してください' }
