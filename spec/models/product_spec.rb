@@ -44,7 +44,7 @@ RSpec.describe Product, type: :model do
         @product.valid?
         expect(@product.errors.full_messages).to include("Category can't be blank")
       end
-      it 'priceが空では登録できないこと' do
+      it '販売価格が空では登録できないこと' do
         @product.price = nil
         @product.valid?
         expect(@product.errors.full_messages).to include("Price can't be blank")
@@ -65,7 +65,7 @@ RSpec.describe Product, type: :model do
         expect(@product.errors.full_messages).to include("Price is invalid")
       end
       it '販売価格が全角数字では登録できないこと' do
-        @product.price = １００００
+        @product.price = "１００００"
         @product.valid?
         expect(@product.errors.full_messages).to include("Price is invalid")
       end
