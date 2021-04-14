@@ -59,7 +59,7 @@ RSpec.describe Product, type: :model do
         @product.valid?
         expect(@product.errors.full_messages).to include("Explanation can't be blank")
       end
-      it '販売価格が300以下では登録できないこと' do
+      it '販売価格が300未満では登録できないこと' do
         @product.price = 250
         @product.valid?
         expect(@product.errors.full_messages).to include("Price is invalid")
