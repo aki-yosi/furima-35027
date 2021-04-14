@@ -6,8 +6,8 @@ class ProductsController < ApplicationController
     end
 
     def index
-        @product = Product.all
-        @products = Product.includes(:user)
+        #@product = Product.all
+        #@products = Product.includes(:user)
     end
  
     def create

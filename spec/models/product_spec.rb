@@ -60,7 +60,7 @@ RSpec.describe Product, type: :model do
         expect(@product.errors.full_messages).to include("Explanation can't be blank")
       end
       it '販売価格が300以下では登録できないこと' do
-        @product.price = "250"
+        @product.price = 250
         @product.valid?
         expect(@product.errors.full_messages).to include("Price is invalid")
       end
@@ -68,6 +68,46 @@ RSpec.describe Product, type: :model do
         @product.price = "１００００"
         @product.valid?
         expect(@product.errors.full_messages).to include("Price is invalid")
+      end
+      it '値段が半角英数混合では登録できないこと' do
+        @product.price = "1text11"
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Price is invalid")
+      end
+      it '値段が半角英語だけでは登録できないこと' do
+        @product.price = "aaaaaa"
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Price is invalid")
+      end
+      it '値段が10_000_000円以上の場合は登録できない' do
+        @product.price = "100000000"
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Price is invalid")
+      end
+      it 'カテゴリーが1の場合は登録できない' do
+        @product.category_id = 1
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Category must be other than 1")
+      end
+      it '商品の状態が1の場合は登録できない' do
+        @product.status_id = 1
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Status must be other than 1")
+      end
+      it '配送料の負担が1の場合は登録できない' do
+        @product.shipping_cost_id = 1
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Shipping cost must be other than 1")
+      end
+      it '発送までの日数が1の場合は登録できない' do
+        @product.shipping_day_id = 1
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Shipping day must be other than 1")
+      end
+      it '発送元の地域が1の場合は登録できない' do
+        @product.area_id = 1
+        @product.valid?
+        expect(@product.errors.full_messages).to include("Area must be other than 1")
       end
     end
   end

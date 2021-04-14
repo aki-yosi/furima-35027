@@ -21,4 +21,5 @@ class Area < ActiveHash::Base
 
     include ActiveHash::Associations
     has_many :articles
+    has_many :articlesproducts
 end

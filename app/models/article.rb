@@ -7,12 +7,5 @@ class Article < ApplicationRecord
         belongs_to :shipping_day
         belongs_to :category
     end
-    with_options numericality: { other_than: 1 } do
-        validates :status_id
-        validates :area_id
-        validates :shipping_cost_id
-        validates :shipping_day_id
-        validates :category_id
-    end
 
 end
