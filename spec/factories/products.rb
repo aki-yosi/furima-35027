@@ -6,7 +6,7 @@ FactoryBot.define do
     shipping_day_id { 2 }
     area_id { 6 }
     category_id { 4 }
-    price { "20000" }
+    price { 20000 }
     explanation {Faker::Lorem.sentence}
 
     association :user
