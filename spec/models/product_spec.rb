@@ -8,7 +8,6 @@ RSpec.describe Product, type: :model do
 
     context '出品できる場合' do
       it "status_id、shipping_cost_id、shipping_day_id、area_id、category_id、price、explanation、name、image、が存在すれば登録できること" do
-        
         expect(@product).to be_valid
       end
     end
@@ -59,11 +58,6 @@ RSpec.describe Product, type: :model do
         @product.explanation = nil
         @product.valid?
         expect(@product.errors.full_messages).to include("Explanation can't be blank")
-      end
-      it 'nameが空では登録できないこと' do
-        @product.name = nil
-        @product.valid?
-        expect(@product.errors.full_messages).to include("Name can't be blank")
       end
       it '販売価格が300以下では登録できないこと' do
         @product.price = "250"
