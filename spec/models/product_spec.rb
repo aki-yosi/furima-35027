@@ -65,7 +65,7 @@ RSpec.describe Product, type: :model do
         expect(@product.errors.full_messages).to include("Price is invalid")
       end
       it '販売価格が全角数字では登録できないこと' do
-        @product.price = "１００００"
+        @product.price = １００００
         @product.valid?
         expect(@product.errors.full_messages).to include("Price is invalid")
       end
@@ -80,7 +80,7 @@ RSpec.describe Product, type: :model do
         expect(@product.errors.full_messages).to include("Price is invalid")
       end
       it '値段が10_000_000円以上の場合は登録できない' do
-        @product.price = "100000000"
+        @product.price = 100000000
         @product.valid?
         expect(@product.errors.full_messages).to include("Price is invalid")
       end
