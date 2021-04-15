@@ -127,12 +127,12 @@
       <% @products.each do |product| %>
         <li class='list'>
           <div class='item-img-content'>
-            <%= image_tag "item-sample.png", class: "item-img" %>
-            <% if @user_product %>
+            <%= image_tag product.image, class: "item-img" %>
+            <%# if @user_product %>
               <div class='sold-out'>
                 <span>Sold Out!!</span>
               </div>
-            <% end %>
+            <%# end %>
           </div>
           <div class='item-info'>
             <h3 class='item-name'>
