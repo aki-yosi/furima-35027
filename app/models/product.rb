@@ -27,5 +27,5 @@ class Product < ApplicationRecord
     belongs_to_active_hash :shipping_cost
     belongs_to_active_hash :shipping_day
     belongs_to_active_hash :category
-    #has_one :purchase
+    has_one :purchase
 end
