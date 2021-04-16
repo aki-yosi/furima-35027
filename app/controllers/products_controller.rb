@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
-    before_action :set_product, only: [:edit, :show]
+    before_action :set_product, only: [:edit, :show, :update]
     before_action :authenticate_user!, except: [:index, :show]
-
+    before_action :ruby_status, only: [:edit, :update]
     def new
         @product = Product.new
     end
@@ -12,9 +12,6 @@ class ProductsController < ApplicationController
 
     def edit
         
-        if current_user.id != @product.user_id
-            redirect_to root_path 
-        end
     end
  
     def create
@@ -49,4 +46,9 @@ class ProductsController < ApplicationController
         @product = Product.find(params[:id])
     end
 
+    def ruby_status
+        if current_user.id != @product.user_id
+            redirect_to root_path 
+        end
+    end
 end
