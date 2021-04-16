@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
-    before_action :set_product, only: [:edit, :show, :update]
+    before_action :set_product, only: [:edit, :show, :update, :destroy]
     before_action :authenticate_user!, except: [:index, :show]
-    before_action :ruby_status, only: [:edit, :update]
+    before_action :ruby_status, only: [:edit, :update, :destroy]
     def new
         @product = Product.new
     end
@@ -33,6 +33,11 @@ class ProductsController < ApplicationController
 
     def show
     end
+
+    def destroy
+        @product.destroy
+        redirect_to root_path
+    end    
 
 
     private
