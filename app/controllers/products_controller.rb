@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
-    before_action :authenticate_user!, except: [:index, :show ]
-
+    before_action :set_product, only: [:edit, :show, :update]
+    before_action :authenticate_user!, except: [:index, :show]
+    before_action :ruby_status, only: [:edit, :update]
     def new
         @product = Product.new
     end
@@ -10,7 +11,7 @@ class ProductsController < ApplicationController
     end
 
     def edit
-        #@product = Product.find(params[:id])
+        
     end
  
     def create
@@ -22,8 +23,15 @@ class ProductsController < ApplicationController
         end
     end
 
+    def update
+        if @product.update(product_params)
+            redirect_to product_path(@product)
+        else
+            render :edit
+        end
+    end
+
     def show
-        @product = Product.find(params[:id])
     end
 
 
@@ -33,5 +41,13 @@ class ProductsController < ApplicationController
         
     end
 
+    def set_product
+        @product = Product.find(params[:id])
+    end
 
+    def ruby_status
+        if current_user.id != @product.user_id
+            redirect_to root_path 
+        end
+    end
 end
