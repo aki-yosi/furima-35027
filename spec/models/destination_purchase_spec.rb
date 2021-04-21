@@ -10,7 +10,7 @@ RSpec.describe DestinationPurchase, type: :model do
 
 
   context '内容に問題ない場合' do
-    it "post_code、area_id、city、address、building_name、phone_number、purchase_idがあれば保存ができること" do
+    it "post_code、area_id、token、city、address、building_name、phone_number、purchase_idがあれば保存ができること" do
       expect(@destination).to be_valid
     end
 
@@ -30,7 +30,7 @@ RSpec.describe DestinationPurchase, type: :model do
     end
 
     it "post_codeにハイフンがないと登録できないこと" do
-      @destination.post_code = nil
+      @destination.post_code = 1234567
       @destination.valid?
       expect(@destination.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
     end
@@ -64,6 +64,12 @@ RSpec.describe DestinationPurchase, type: :model do
         @destination.product_id = nil
         @destination.valid?
         expect(@destination.errors.full_messages).to include("Product can't be blank")
+    end
+
+    it "電話番号は11桁以内の数値のみ保存可能なこと" do
+        @destination.phone_number = "0000000000000"
+        @destination.valid?
+        expect(@destination.errors.full_messages).to include("Phone number is invalid")
     end
 
   end
