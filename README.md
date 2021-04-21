@@ -66,3 +66,5 @@
 - belongs_to :user
 - belongs_to :product
 - has_one :destination
+
+<!-- 環境変数プッシュ -->
