@@ -19,6 +19,11 @@ RSpec.describe DestinationPurchase, type: :model do
       expect(@destination).to be_valid
     end
 
+    it "電話番号は11桁以内の数値のみ保存可能なこと" do
+        @destination.phone_number = "00000000000"
+        expect(@destination).to be_valid
+    end
+
   end
 
   context '内容に問題がある場合' do
@@ -30,7 +35,7 @@ RSpec.describe DestinationPurchase, type: :model do
     end
 
     it "post_codeにハイフンがないと登録できないこと" do
-      @destination.post_code = 1234567
+      @destination.post_code = "1234567"
       @destination.valid?
       expect(@destination.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
     end
@@ -66,11 +71,17 @@ RSpec.describe DestinationPurchase, type: :model do
         expect(@destination.errors.full_messages).to include("Product can't be blank")
     end
 
-    it "電話番号は11桁以内の数値のみ保存可能なこと" do
-        @destination.phone_number = "0000000000000"
+
+    it "電話番号は-(ハイフン)が使用されていると保存できないこと" do
+        @destination.phone_number = "090-1111-1111"
         @destination.valid?
         expect(@destination.errors.full_messages).to include("Phone number is invalid")
     end
 
+    it "電話番号が11桁以上だと保存できないこと" do
+        @destination.phone_number = "0000000000000"
+        @destination.valid?
+        expect(@destination.errors.full_messages).to include("Phone number is invalid")
+    end
   end
 end
