@@ -21,5 +21,5 @@ class Area < ActiveHash::Base
 
     include ActiveHash::Associations
     has_many :products
-    has_many :destination
+    has_many :destinations
 end
