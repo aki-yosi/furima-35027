@@ -129,7 +129,7 @@
           <%= link_to  product_path(product) do %>
             <div class='item-img-content'>
               <%= image_tag product.image, class: "item-img" %>
-              <% if product.purchase.present? %> 
+              <% if product.purchase.present? %>
                 <div class='sold-out'>
                   <span>Sold Out!!</span>
                 </div>

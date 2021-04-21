@@ -9,7 +9,7 @@ class User < ApplicationRecord
  end
 
  has_many :products
-
+ has_many :purchases
 
   validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: '英数文字を使用してください' }
   with_options presence: true, format: { with: /\A[ァ-ヶ一]+\z/, message: '全角（カタカナ）を使用してください' } do
