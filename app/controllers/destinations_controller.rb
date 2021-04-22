@@ -1,7 +1,7 @@
 class DestinationsController < ApplicationController
     before_action :set_product, only: [:index, :create]
     before_action :authenticate_user!, only: :index
-    before_action :move_to_index, only: :index
+    before_action :move_to_index, only: [:index, :edit]
     before_action :set_destination, only: :index
     
 
