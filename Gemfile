@@ -63,3 +63,4 @@ gem 'devise'
 gem 'pry-rails'
 gem 'active_hash'
 gem 'payjp'
+gem "aws-sdk-s3", require: false
