@@ -2,8 +2,7 @@ class DestinationsController < ApplicationController
     before_action :set_product, only: [:index, :create]
     before_action :authenticate_user!, only: :index
     before_action :move_to_index, only: [:index, :edit]
-    before_action :set_destination, only: :index
-    
+    before_action :set_destination, only: [:index, :edit]
 
 
     def index
@@ -51,4 +50,6 @@ class DestinationsController < ApplicationController
             redirect_to root_path
         end
     end
+
+  
 end

@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
     before_action :set_product, only: [:edit, :show, :update, :destroy]
     before_action :authenticate_user!, except: [:index, :show]
     before_action :ruby_status, only: [:edit, :update, :destroy]
+    before_action :set_destination, only: :edit
     def new
         @product = Product.new
     end
@@ -53,6 +54,12 @@ class ProductsController < ApplicationController
     def ruby_status
         if current_user.id != @product.user_id
             redirect_to root_path 
+        end
+    end
+
+    def set_destination
+        if @product.purchase.present? 
+            redirect_to root_path
         end
     end
 end
